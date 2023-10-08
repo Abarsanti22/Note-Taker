@@ -10,21 +10,21 @@ module.exports = function (app) {
     res.json(JSON.parse(data));
   });
   app.post("/api/notes", (req, res) => {
-
-    const newNote = {
-        ...req.body,
+  const newNote = {
+    title: req.body.title,
+    text: req.body.text,
         id: uniqid(),
       };
 
 
     console.log("Post Request for new notes");
 
-    let data = fs.readFileSync("./app/data/db.json", "utf8");
+    let data = fs.readFileSync("./Develop/db/db.json", "utf8");
     const dataJSON = JSON.parse(data);
     dataJSON.push(newNote);
 
     fs.writeFile(
-        "./app/data/db.json",
+        "./Develop/db/db.json",
         JSON.stringify(dataJSON),
         (err, text) => {
           if (err) {
@@ -41,14 +41,14 @@ module.exports = function (app) {
     });
 
     app.delete("/api/notes/:id", (req, res) => {
-let data = fs.readFileSync("./app/data/db.json", "utf8");
+let data = fs.readFileSync("./Develop/db/db.json", "utf8");
 
 const dataJSON = JSON.parse(data);
 const newNotes = dataJSON.filter((note) => {
     return note.id !== req.params.id;
   });
 
-    fs.writeFile( "./app/data/db.json",JSON.stringify(newNotes),(err, text) => {
+    fs.writeFile( "./Develop/db/db.json",JSON.stringify(newNotes),(err, text) => {
         if (err) {
           console.error(err);
           return;
