@@ -5,7 +5,7 @@ module.exports = function (app) {
 
     app.get("/api/notes", (req, res) => {
     console.log("Execute GET notes request");
-    let data = fs.readFileSync("./app/data/db.json", "utf8");
+    let data = fs.readFileSync("./Develop/db/db.json", "utf8");
 
     res.json(JSON.parse(data));
   });
