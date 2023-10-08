@@ -8,6 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname + '/Develop/public')));
 
+require("./Develop/routes/api-routes.js")(app);
+require("./Develop/routes/html-routes.js")(app);
 
 
 
