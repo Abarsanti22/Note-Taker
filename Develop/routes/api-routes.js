@@ -23,17 +23,17 @@ module.exports = function (app) {
     const dataJSON = JSON.parse(data);
     dataJSON.push(newNote);
 
-    fs.writeFile("./Develop/db/db.json",JSON.stringify(dataJSON));
-    //     (err, text) => {
-    //       if (err) {
-    //         console.error(err);
-    //         return;
-    //       }
-    //       console.log("HELLO", text);
-    //     }
-    //   );
+    fs.writeFile("./Develop/db/db.json",JSON.stringify(dataJSON),
+        (err, text) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log("HELLO", text);
+        }
+      );
   
-    //   console.log("Success, added a new note");
+      console.log("Success, added a new note");
   
       res.json(data);
     });
@@ -46,14 +46,12 @@ const newNotes = dataJSON.filter((note) => {
     return note.id !== req.params.id;
   });
 
-    fs.writeFile( "./Develop/db/db.json",JSON.stringify(newNotes));
-    
-    // ,(err, text) => {
-    // //     if (err) {
-    // //       console.error(err);
-    // //       return;
-    //     }
-    //   });
+    fs.writeFile( "./Develop/db/db.json",JSON.stringify(newNotes),(err, text) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
 
     res.json(newNotes);
   });
