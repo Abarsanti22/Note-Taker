@@ -4,7 +4,6 @@ var uniqid = require("uniqid");
 module.exports = function (app) {
 
     app.get("/api/notes", async (req, res) => {
-    // console.log("GET notes request");
     let data = fs.readFileSync("./Develop/db/db.json", "utf8");
     res.json(JSON.parse(data));
   });
@@ -16,9 +15,6 @@ module.exports = function (app) {
         id: uniqid(),
       };
 
-
-    // console.log("Post Request");
-
     let data = fs.readFileSync("./Develop/db/db.json", "utf8");
     const dataJSON = JSON.parse(data);
     dataJSON.push(newNote);
@@ -29,11 +25,11 @@ module.exports = function (app) {
             console.error(err);
             return;
           }
-          console.log("HELLO", text);
+        //   console.log("HELLO", text);
         }
       );
   
-      console.log("Success, added a new note");
+    //   console.log("Success, added a new note");
   
       res.json(data);
     });
