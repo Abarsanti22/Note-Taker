@@ -25,10 +25,11 @@ module.exports = function (app) {
             console.error(err);
             return;
           }
-        }
-      );
+        });
+
     res.json(data);
     });
+
 
 app.delete("/api/notes/:id", (req, res) => {
 let data = fs.readFileSync("./Develop/db/db.json", "utf8");
