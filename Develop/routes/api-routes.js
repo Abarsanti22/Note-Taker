@@ -42,14 +42,13 @@ const newNotes = dataJSON.filter((note) => {
     return note.id !== req.params.id;
   });
 
-    fs.writeFile( "./Develop/db/db.json",JSON.stringify(newNotes));
-    res.json("Note deleted.");
-    // ,(err, text) => {
-        // if (err) {
-        //   console.error(err);
-        //   return;
-        // }
+    fs.writeFile( "./Develop/db/db.json",JSON.stringify(newNotes),(err, text) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
       });
 
     res.json(newNotes);
-    }
+  });
+};
